@@ -240,17 +240,22 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <!-- 入金入力 -->
-                    <div class="border border-slate-200 p-5 rounded-lg bg-slate-50">
+                    <div class="border border-slate-200 p-5 rounded-lg bg-slate-50 flex flex-col">
                         <h3 class="text-lg font-bold mb-3 text-indigo-800 border-b border-slate-300 pb-2 flex items-center">
                             <span class="mr-2">🏦</span> 入金の実績を登録する
                         </h3>
                         <p class="text-sm text-slate-600 mb-3">お客様から入金があった際に入力します。</p>
-                        <ol class="list-decimal ml-5 space-y-3 text-sm text-slate-700">
+                        <ol class="list-decimal ml-5 space-y-3 text-sm text-slate-700 flex-grow mb-4">
                             <li>「経理管理画面」などを開き、該当するデータをタップします。</li>
                             <li>✏️（編集）ボタンを押します。</li>
                             <li>実際の入金方法に合わせて、<strong>「現金」「手形」「相殺」「会費」</strong>の項目に金額を入力します。</li>
                             <li>保存すると、自動的に「入金合計」や「実入金進捗率」、「月収支」が計算・更新されます。</li>
                         </ol>
+                        
+                        <div class="p-4 bg-indigo-100 border border-indigo-200 rounded-md text-indigo-900 text-sm shadow-sm">
+                            <strong class="flex items-center mb-1 text-base"><span class="mr-1">💡</span> 注意点</strong>
+                            <p>すべての入金が完了したら、対象の工事のステータスを<strong>「完工」</strong>に変更してください。</p>
+                        </div>
                     </div>
                     
                     <!-- 請求済み -->
