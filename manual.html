@@ -1,1 +1,316 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>入出金表作成アプリ 取扱説明書</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            line-height: 1.7;
+            letter-spacing: 0.025em;
+        }
+        h1, h2, h3 {
+            color: #1e293b; /* slate-800 */
+        }
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #6366f1; /* indigo-500 */
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+            margin-right: 8px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
 
+    <!-- Header -->
+    <header class="bg-indigo-700 text-white py-10 shadow-md">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-bold mb-3 text-white">入出金表作成アプリ 取扱説明書</h1>
+            <p class="text-indigo-100 text-lg">日々の経費入力から、工事ごとの収支管理・請求管理までをスムーズに行うためのガイドです。</p>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        
+        <!-- Table of Contents -->
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-7 mb-12">
+            <h2 class="text-xl font-bold mb-4 border-b border-slate-200 pb-2">目次</h2>
+            <ul class="space-y-2 text-indigo-600 font-medium">
+                <li><a href="#section-1" class="hover:text-indigo-800 hover:underline transition-colors block py-1">1. アプリの概要と基本操作</a></li>
+                <li><a href="#section-2" class="hover:text-indigo-800 hover:underline transition-colors block py-1">2. 各種画面（メニュー）の見方</a></li>
+                
+                <li class="pt-4 pb-1"><strong class="text-slate-700 border-l-4 border-emerald-500 pl-2">【一般・管理者 共通】 現場担当者向け</strong></li>
+                <li><a href="#section-3" class="hover:text-indigo-800 hover:underline transition-colors block py-1 pl-4">3. 新しい工事を登録する</a></li>
+                <li><a href="#section-4" class="hover:text-indigo-800 hover:underline transition-colors block py-1 pl-4">4. 支払入力（材料費・小口経費・カード決済）</a></li>
+                
+                <li class="pt-4 pb-1"><strong class="text-slate-700 border-l-4 border-rose-500 pl-2">【管理者・経理担当 向け】</strong></li>
+                <li><a href="#section-5" class="hover:text-indigo-800 hover:underline transition-colors block py-1 pl-4">5. 入金入力と請求管理</a></li>
+                <li><a href="#section-6" class="hover:text-indigo-800 hover:underline transition-colors block py-1 pl-4">6. マスタ（基本データ）の管理とロック設定</a></li>
+            </ul>
+        </div>
+
+        <!-- Section 1 -->
+        <section id="section-1" class="mb-14">
+            <h2 class="text-2xl font-bold mb-5 flex items-center border-l-4 border-indigo-500 pl-4">
+                1. アプリの概要と基本操作
+            </h2>
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-7">
+                <p class="mb-6 text-slate-600">このアプリは、各工事の「予算・経費（材料費や外注費など）・請求・入金」を一元管理するためのアプリです。現場の担当者から経理担当者まで、それぞれの権限や業務に合わせてデータを入力・確認できます。</p>
+                
+                <h3 class="text-lg font-bold mt-8 mb-4 bg-slate-100 p-3 rounded-md text-slate-700">共通のボタン（アイコン）</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="flex items-start">
+                        <span class="text-2xl mr-3 bg-slate-50 p-2 rounded-lg shadow-sm border border-slate-100">➕</span>
+                        <div>
+                            <span class="font-bold text-slate-800">追加ボタン</span>
+                            <p class="text-sm text-slate-500 mt-1">新しいデータ（工事や経費など）を登録する時に押します。通常、画面の右下にあります。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-2xl mr-3 bg-slate-50 p-2 rounded-lg shadow-sm border border-slate-100">✏️</span>
+                        <div>
+                            <span class="font-bold text-slate-800">編集ボタン</span>
+                            <p class="text-sm text-slate-500 mt-1">登録済みのデータを修正・変更する時に押します。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-2xl mr-3 bg-slate-50 p-2 rounded-lg shadow-sm border border-slate-100">🗑️</span>
+                        <div>
+                            <span class="font-bold text-slate-800">削除ボタン</span>
+                            <p class="text-sm text-slate-500 mt-1">データを消去します。<br><span class="text-red-500 font-medium">※一度消すと元に戻せないので注意してください。</span></p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-2xl mr-3 bg-slate-50 p-2 rounded-lg shadow-sm border border-slate-100">💾</span>
+                        <div>
+                            <span class="font-bold text-slate-800">保存 (Save)</span>
+                            <p class="text-sm text-slate-500 mt-1">入力画面で入力を終えたら、必ず右下の「Save」を押して保存してください。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2 -->
+        <section id="section-2" class="mb-14">
+            <h2 class="text-2xl font-bold mb-5 flex items-center border-l-4 border-indigo-500 pl-4">
+                2. 各種画面（メニュー）の見方
+            </h2>
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-7">
+                <p class="mb-6 text-slate-600">アプリを開くと、下部のタブやメニュー画面から目的の作業画面へ移動できます。</p>
+                
+                <ul class="space-y-4">
+                    <li class="p-5 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors shadow-sm">
+                        <strong class="text-indigo-700 text-lg flex items-center"><span class="mr-2">📱</span> メニュー画面</strong>
+                        <p class="mt-2 text-slate-600">アプリのホーム画面です。ここから各機能にアクセスできます。</p>
+                    </li>
+                    <li class="p-5 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors shadow-sm relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-emerald-100 text-emerald-800 text-xs px-3 py-1 rounded-bl-lg font-bold">一般・管理者</div>
+                        <strong class="text-indigo-700 text-lg flex items-center mt-2"><span class="mr-2">🏢</span> 工事管理画面 / 各種入力画面</strong>
+                        <p class="mt-2 text-slate-600">工事一覧の確認や、材料費・小口経費などの支払入力を行います。</p>
+                    </li>
+                    <li class="p-5 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors shadow-sm relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-rose-100 text-rose-800 text-xs px-3 py-1 rounded-bl-lg font-bold">管理者・経理</div>
+                        <strong class="text-indigo-700 text-lg flex items-center mt-2"><span class="mr-2">💰</span> 経理管理画面 / 請求詳細画面</strong>
+                        <p class="mt-2 text-slate-600">月ごとの請求額、入金額、未入金の確認、支払いの管理を行います。</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section 3 -->
+        <section id="section-3" class="mb-14">
+            <h2 class="text-2xl font-bold mb-5 flex items-center flex-wrap border-l-4 border-indigo-500 pl-4">
+                3. 新しい工事を登録する
+                <span class="bg-emerald-100 text-emerald-800 text-sm px-3 py-1 rounded-full ml-3 font-normal mt-2 sm:mt-0 whitespace-nowrap">一般・管理者 共通</span>
+            </h2>
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-7">
+                <p class="mb-6 text-slate-600">新しい案件が始まったら、まずは「工事一覧」にデータを登録します。</p>
+                
+                <div class="space-y-5">
+                    <div class="flex items-start">
+                        <span class="step-number">1</span>
+                        <p class="text-slate-700 mt-0.5">メニューから <strong>工事一覧</strong>（または工事管理画面）を開きます。</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="step-number">2</span>
+                        <p class="text-slate-700 mt-0.5">画面右下の <strong>➕（追加）ボタン</strong> を押します。</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="step-number">3</span>
+                        <div class="w-full">
+                            <p class="text-slate-700 mt-0.5 mb-3">フォームが開くので、必要な情報を入力します。</p>
+                            <ul class="list-disc ml-4 pl-2 space-y-2 text-sm text-slate-600 bg-slate-50 p-4 rounded-lg border border-slate-100">
+                                <li><strong class="text-slate-800">得意先:</strong> ドロップダウンから選びます（事前に得意先マスタに登録が必要です）。</li>
+                                <li><strong class="text-slate-800">現場名:</strong> 現場の名前を入力します。</li>
+                                <li><strong class="text-slate-800">営業 / 管理:</strong> 担当する社員を選びます。</li>
+                                <li><strong class="text-slate-800">予算:</strong> 「予算材料費」「予算手間代」「予算経費」を入力すると、自動で「予算支払総計」が計算されます。</li>
+                                <li><strong class="text-slate-800">工期（ヶ月） / 初回計上年月:</strong> スケジュールを入力します。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="step-number">4</span>
+                        <p class="text-slate-700 mt-0.5">右下の <strong>Save（保存）</strong> を押して登録完了です。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4 -->
+        <section id="section-4" class="mb-14">
+            <h2 class="text-2xl font-bold mb-5 flex items-center flex-wrap border-l-4 border-indigo-500 pl-4">
+                4. 支払入力（材料費・小口経費・カード決済）
+                <span class="bg-emerald-100 text-emerald-800 text-sm px-3 py-1 rounded-full ml-3 font-normal mt-2 sm:mt-0 whitespace-nowrap">一般・管理者 共通</span>
+            </h2>
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-7">
+                <p class="mb-6 text-slate-600">工事にかかった経費は、種類に合わせて専用の画面から入力します。入力した金額は、自動的に対象の工事の「実績」として集計されます。</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- 材料費 -->
+                    <div class="border border-amber-200 rounded-xl p-5 bg-amber-50/50 shadow-sm relative">
+                        <h3 class="font-bold text-lg text-amber-800 mb-3 flex items-center pb-2 border-b border-amber-200">
+                            <span class="mr-2 text-2xl">📦</span> 材料費入力
+                        </h3>
+                        <p class="text-sm text-slate-600 mb-4">仕入先から購入した材料費の入力です。</p>
+                        <ol class="list-decimal ml-5 text-sm space-y-2 text-slate-700 font-medium">
+                            <li>「材料費入力画面」を開く</li>
+                            <li>➕ボタンを押す</li>
+                            <li>「工事ID」「計上年月」「仕入先名」「金額」を入力</li>
+                            <li>Saveする</li>
+                        </ol>
+                    </div>
+
+                    <!-- 小口経費 -->
+                    <div class="border border-emerald-200 rounded-xl p-5 bg-emerald-50/50 shadow-sm relative">
+                        <h3 class="font-bold text-lg text-emerald-800 mb-3 flex items-center pb-2 border-b border-emerald-200">
+                            <span class="mr-2 text-2xl">💴</span> 小口経費精算
+                        </h3>
+                        <p class="text-sm text-slate-600 mb-4">駐車場代、備品代、飲食代などの入力です。</p>
+                        <ol class="list-decimal ml-5 text-sm space-y-2 text-slate-700 font-medium">
+                            <li>「小口経費入力画面」を開く</li>
+                            <li>➕ボタンを押す</li>
+                            <li>「工事ID」「用途」「金額」を入力</li>
+                            <li>必要に応じて「証憑」に写真を添付</li>
+                            <li>Saveする</li>
+                        </ol>
+                    </div>
+
+                    <!-- カード決済 -->
+                    <div class="border border-violet-200 rounded-xl p-5 bg-violet-50/50 shadow-sm relative">
+                        <h3 class="font-bold text-lg text-violet-800 mb-3 flex items-center pb-2 border-b border-violet-200">
+                            <span class="mr-2 text-2xl">💳</span> カード決済
+                        </h3>
+                        <p class="text-sm text-slate-600 mb-4">会社用クレジットカード等で決済したものの入力です。</p>
+                        <ol class="list-decimal ml-5 text-sm space-y-2 text-slate-700 font-medium">
+                            <li>「カード決済入力画面」を開く</li>
+                            <li>➕ボタンを押す</li>
+                            <li>「工事ID」「計上年月」「金額」を入力</li>
+                            <li>Saveする</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5 -->
+        <section id="section-5" class="mb-14">
+            <h2 class="text-2xl font-bold mb-5 flex items-center flex-wrap border-l-4 border-indigo-500 pl-4">
+                5. 入金入力と請求管理
+                <span class="bg-rose-100 text-rose-800 text-sm px-3 py-1 rounded-full ml-3 font-normal mt-2 sm:mt-0 whitespace-nowrap">管理者・経理向け</span>
+            </h2>
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-7">
+                <p class="mb-6 text-slate-600">主に経理担当者や管理者が利用する機能です。「経理管理画面」や「請求詳細画面」で各工事の月ごとの状況を確認し、入金実績や請求ステータスを更新します。</p>
+
+                <div class="mb-8 p-5 bg-rose-50 border border-rose-200 rounded-lg text-rose-800 shadow-sm">
+                    <strong class="flex items-center text-lg mb-2"><span class="mr-2">⚠️</span> 未請求アラート（赤字表示）について</strong>
+                    <p class="text-sm leading-relaxed">当月以前のデータで、請求が「未請求」のままであるデータは、画面上で<strong class="text-red-600 bg-white px-1 rounded mx-1">赤字</strong>で目立つように表示されます。請求漏れを防ぐための機能です。</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- 入金入力 -->
+                    <div class="border border-slate-200 p-5 rounded-lg bg-slate-50">
+                        <h3 class="text-lg font-bold mb-3 text-indigo-800 border-b border-slate-300 pb-2 flex items-center">
+                            <span class="mr-2">🏦</span> 入金の実績を登録する
+                        </h3>
+                        <p class="text-sm text-slate-600 mb-3">お客様から入金があった際に入力します。</p>
+                        <ol class="list-decimal ml-5 space-y-3 text-sm text-slate-700">
+                            <li>「経理管理画面」などを開き、該当するデータをタップします。</li>
+                            <li>✏️（編集）ボタンを押します。</li>
+                            <li>実際の入金方法に合わせて、<strong>「現金」「手形」「相殺」「会費」</strong>の項目に金額を入力します。</li>
+                            <li>保存すると、自動的に「入金合計」や「実入金進捗率」、「月収支」が計算・更新されます。</li>
+                        </ol>
+                    </div>
+                    
+                    <!-- 請求済み -->
+                    <div class="border border-slate-200 p-5 rounded-lg bg-slate-50">
+                        <h3 class="text-lg font-bold mb-3 text-indigo-800 border-b border-slate-300 pb-2 flex items-center">
+                            <span class="mr-2">📨</span> 請求済みに変更する
+                        </h3>
+                        <p class="text-sm text-slate-600 mb-3">請求書の送付が完了した際に入力します。</p>
+                        <ol class="list-decimal ml-5 space-y-3 text-sm text-slate-700">
+                            <li>「請求詳細画面」を開きます。</li>
+                            <li>該当する工事月のデータをタップして詳細を開きます。</li>
+                            <li><strong>「請求済にする」</strong>ボタンを押すとステータスが変わり、送付日時が自動記録されます。</li>
+                            <li class="text-slate-500 list-none mt-2">※間違えて押した場合は、「未請求に戻す」ボタンで元に戻せます。</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6 -->
+        <section id="section-6" class="mb-14">
+            <h2 class="text-2xl font-bold mb-5 flex items-center flex-wrap border-l-4 border-indigo-500 pl-4">
+                6. マスタ（基本データ）の管理とロック設定
+                <span class="bg-rose-100 text-rose-800 text-sm px-3 py-1 rounded-full ml-3 font-normal mt-2 sm:mt-0 whitespace-nowrap">管理者向け</span>
+            </h2>
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-7">
+                <p class="mb-6 text-slate-600">ドロップダウンで選択する項目（取引先や担当者）のリストや、アプリ全体の権限設定は各マスタ画面で管理します。</p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div class="border border-slate-200 rounded-lg p-5 hover:border-indigo-300 transition-colors bg-white">
+                        <strong class="block text-indigo-700 mb-2 text-lg">👥 得意先マスタ</strong>
+                        <p class="text-sm text-slate-600 leading-relaxed">顧客名、入金日、締め日、入金条件を登録します。工事登録時の選択肢になります。</p>
+                    </div>
+                    <div class="border border-slate-200 rounded-lg p-5 hover:border-indigo-300 transition-colors bg-white">
+                        <strong class="block text-indigo-700 mb-2 text-lg">🏢 仕入先マスタ</strong>
+                        <p class="text-sm text-slate-600 leading-relaxed">材料などを購入する業者の名前を登録します。材料費入力時の選択肢になります。</p>
+                    </div>
+                    <div class="border border-slate-200 rounded-lg p-5 hover:border-indigo-300 transition-colors bg-white">
+                        <strong class="block text-indigo-700 mb-2 text-lg">🧑‍💼 社員マスタ</strong>
+                        <p class="text-sm text-slate-600 leading-relaxed">アプリを利用する社員の名前、メールアドレス、部署を登録します。ここで<strong>「権限（管理者 / 一般）」</strong>の設定も行います。</p>
+                    </div>
+                    
+                    <!-- 編集ロック設定 (重要) -->
+                    <div class="border-2 border-indigo-200 rounded-lg p-5 bg-indigo-50/50 shadow-sm">
+                        <strong class="block text-indigo-800 mb-2 text-lg flex items-center">
+                            <span class="mr-2">🔒</span> 設定マスタ (編集ロック)
+                        </strong>
+                        <p class="text-sm text-slate-700 leading-relaxed font-medium mb-2">過去データの改ざんを防ぐための重要な設定です。</p>
+                        <p class="text-sm text-slate-600 leading-relaxed">「編集ロック年月」を設定すると、<span class="text-red-600 font-bold">一般権限のユーザーはその月以前のデータを編集・削除できなくなります。</span>（管理者はいつでも編集可能です）</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 text-slate-400 py-8 text-center mt-10">
+        <p class="text-sm">&copy; 2026 入出金表作成アプリ 取扱説明書. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
